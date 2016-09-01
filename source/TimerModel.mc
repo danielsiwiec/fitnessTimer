@@ -5,15 +5,15 @@ using Toybox.ActivityRecording as ActivityRecording;
 using Toybox.Sensor as Sensor;
 using Toybox.Time as Time;
 
-class Model{
+class TimerModel{
 
-	const REST_TIME = 10;
-	const PREP_TIME = REST_TIME;
-	const WORK_TIME = REST_TIME * 2;
-	const TOTAL_ROUNDS = 8;
+	var REST_TIME;
+	var PREP_TIME;
+	var WORK_TIME;
+	var TOTAL_ROUNDS;
 	const HAS_TONES = Attention has :playTone;
 
-	var counter = PREP_TIME;
+	var counter;
 	var round = 0;
 	var phase = :prep;
 	var done = false;
@@ -22,7 +22,13 @@ class Model{
 	hidden var refreshTimer = new Timer.Timer();
 	hidden var sensors = Sensor.setEnabledSensors([Sensor.SENSOR_HEARTRATE]);
 
-	function initialize(){
+	function initialize(settings){
+		REST_TIME = settings[:restTime];
+		PREP_TIME = REST_TIME;
+		WORK_TIME = settings[:goTime];
+		TOTAL_ROUNDS = settings[:rounds];
+
+		counter = PREP_TIME;
 	}
 
 	function start(){
