@@ -14,7 +14,7 @@ class FitnessTimerApp extends App.AppBase {
     return [ new StartView() ];
   }
 
-  function onStop() {
+  function onStop(state) {
     if (model.session.isRecording()) {
       var result = model.session.stop() && model.session.discard();
     }
@@ -28,7 +28,7 @@ class StartView extends Ui.View {
     View.initialize();
   }
 
-	function onShow(dc) {
+	function onShow() {
     if(settings[:rounds] == null) {
       Ui.pushView(new SettingPickerView("ROUNDS", [1,2,3,4,5,6,7,8,9,10]), new SettingPickerDelegate(:rounds), Ui.SLIDE_IMMEDIATE);
     } else if (settings[:goTime] == null) {

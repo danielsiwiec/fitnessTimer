@@ -13,7 +13,7 @@ class TimerView extends Ui.View {
   function onUpdate(dc) {
   	setupDisplay(dc, model.phase);
   	if (model.done){
-  		Ui.switchToView(new DoneView(), new DoneDelegate(), Ui.SLIDE_IMMEDIATE);
+  		Ui.switchToView(new DoneView(), null, Ui.SLIDE_IMMEDIATE);
   	} else {
   		largeText(timerString(), dc);
     	bottomText("" + model.round + "/" + model.TOTAL_ROUNDS, dc);
