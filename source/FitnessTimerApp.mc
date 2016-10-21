@@ -29,16 +29,32 @@ class StartView extends Ui.View {
   }
 
 	function onShow() {
-    if(settings[:rounds] == null) {
-      Ui.pushView(new SettingPickerView("ROUNDS", [1,2,3,4,5,6,7,8,9,10]), new SettingPickerDelegate(:rounds), Ui.SLIDE_IMMEDIATE);
-    } else if (settings[:goTime] == null) {
-      Ui.pushView(new SettingPickerView("GO TIME", [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 90, 120]), new SettingPickerDelegate(:goTime), Ui.SLIDE_IMMEDIATE);
-    } else if (settings[:restTime] == null) {
-      Ui.pushView(new SettingPickerView("REST TIME", [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 90, 120]), new SettingPickerDelegate(:restTime), Ui.SLIDE_IMMEDIATE);
-    } else {
-      model = new TimerModel(settings);
-      Ui.switchToView( new TimerView(model), new TimerDelegate(model), Ui.SLIDE_IMMEDIATE);
-    }
+    switchToRoundsSelect();
     return true;
 	}
+
+  function switchToRoundsSelect(){
+    var roundsPicker = new SettingPickerView("ROUNDS", [1,2,3,4,5,6,7,8,9,10]);
+    var roundsPickerDelegate = new SettingPickerDelegate(:rounds, self.method(:switchToGoTimeSelect));
+    Ui.pushView(roundsPicker, roundsPickerDelegate, Ui.SLIDE_IMMEDIATE );
+  }
+
+  function switchToGoTimeSelect(){
+    var goTimePicker = new SettingPickerView("GO TIME", [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 90, 120]);
+    var goTimePickerDelegate = new SettingPickerDelegate(:goTime, self.method(:switchToRestTimeSelect));
+    Ui.pushView(goTimePicker, goTimePickerDelegate, Ui.SLIDE_IMMEDIATE );
+  }
+
+  function switchToRestTimeSelect(){
+    var restTimePicker = new SettingPickerView("REST TIME", [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 90, 120]);
+    var restTimePickerDelegate = new SettingPickerDelegate(:restTime, self.method(:switchToTimer));
+    Ui.pushView(restTimePicker, restTimePickerDelegate, Ui.SLIDE_IMMEDIATE );
+  }
+
+  function switchToTimer(){
+    model = new TimerModel(settings);
+    var timerView = new TimerView(model);
+    var timerDelegate = new TimerDelegate(model);
+    Ui.pushView(timerView, timerDelegate, Ui.SLIDE_IMMEDIATE );
+  }
 }

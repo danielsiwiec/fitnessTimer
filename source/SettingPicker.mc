@@ -22,15 +22,21 @@ class SettingPickerView extends Ui.Picker {
 class SettingPickerDelegate extends Ui.PickerDelegate {
 
 	var settingsSymbol;
+	var next;
 
-  function initialize(symbol){
+  function initialize(symbol, callback){
 		settingsSymbol = symbol;
+		next = callback;
     PickerDelegate.initialize();
   }
 
 	function onAccept(values) {
-    settings[settingsSymbol] = values[0];
-    Ui.popView( Ui.SLIDE_IMMEDIATE );
+		settings[settingsSymbol] = values[0];
+		next.invoke();
   }
+
+	function onCancel(){
+		Ui.popView(Ui.SLIDE_IMMEDIATE);
+	}
 
 }
