@@ -17,7 +17,7 @@ class TimerModel{
 	var round = 0;
 	var phase = :prep;
 	var done = false;
-	var session = ActivityRecording.createSession({:sport => ActivityRecording.SPORT_TRAINING, :subSport => ActivityRecording.SUB_SPORT_CARDIO_TRAINING, :name => "Tabata"});
+	var session = ActivityRecording.createSession({:sport => ActivityRecording.SPORT_TRAINING, :subSport => ActivityRecording.SUB_SPORT_CARDIO_TRAINING, :name => "Interval training"});
 
 	hidden var refreshTimer = new Timer.Timer();
 	hidden var sensors = Sensor.setEnabledSensors([Sensor.SENSOR_HEARTRATE]);
