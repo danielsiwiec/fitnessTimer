@@ -37,7 +37,7 @@ class StartView extends Ui.View {
       Ui.pushView(new SettingPickerView("REST TIME", [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 90, 120]), new SettingPickerDelegate(:restTime), Ui.SLIDE_IMMEDIATE);
     } else {
       model = new TimerModel(settings);
-      Ui.pushView( new TimerView(model), new TimerDelegate(model), Ui.SLIDE_IMMEDIATE);
+      Ui.switchToView( new TimerView(model), new TimerDelegate(model), Ui.SLIDE_IMMEDIATE);
     }
     return true;
 	}
