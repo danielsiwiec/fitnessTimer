@@ -15,9 +15,7 @@ class FitnessTimerApp extends App.AppBase {
   }
 
   function onStop(state) {
-    if (model.session.isRecording()) {
-      var result = model.session.stop() && model.session.discard();
-    }
+    model.dropSession();
   }
 
 }

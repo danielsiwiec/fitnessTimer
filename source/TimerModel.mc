@@ -53,7 +53,7 @@ class TimerModel{
 				intervalBuzz();
 			}	else if (phase == :rest) {
 				if (round == TOTAL_ROUNDS){
-					finishUp();
+					completeSession();
 					stopBuzz();
 				} else {
 					phase = :work;
@@ -66,7 +66,7 @@ class TimerModel{
 		Ui.requestUpdate();
 	}
 
-	function finishUp() {
+	function completeSession() {
 		done = true;
 		session.stop();
 		session.save();
@@ -97,4 +97,13 @@ class TimerModel{
 		Attention.playTone(tone);
 		return true;
 	}
+
+	function dropSession() {
+		refreshTimer.stop();
+		if (session.isRecording()) {
+			session.stop();
+			session.discard();
+		}
+	}
+
 }
