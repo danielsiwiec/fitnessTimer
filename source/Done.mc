@@ -10,3 +10,14 @@ class DoneView extends Ui.View{
 		setLayout(Rez.Layouts.DoneLayout(dc));
 	}
 }
+
+class DoneDelegate extends Ui.BehaviorDelegate {
+
+	function initialize() {
+    BehaviorDelegate.initialize();
+  }
+
+	function onBack() {
+		Toybox.System.exit();
+	}
+}

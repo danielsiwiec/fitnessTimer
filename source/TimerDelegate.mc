@@ -18,6 +18,6 @@ class TimerDelegate extends Ui.BehaviorDelegate {
 
 	function onBack() {
 		model.dropSession();
-		return BehaviorDelegate.onBack();
+		Toybox.System.exit();
 	}
 }

@@ -36,7 +36,7 @@ class SettingPickerDelegate extends Ui.PickerDelegate {
   }
 
 	function onCancel(){
-		Ui.popView(Ui.SLIDE_IMMEDIATE);
+		Toybox.System.exit();
 	}
 
 }

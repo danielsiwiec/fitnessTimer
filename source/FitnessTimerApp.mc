@@ -14,10 +14,6 @@ class FitnessTimerApp extends App.AppBase {
     return [ new StartView() ];
   }
 
-  function onStop(state) {
-    model.dropSession();
-  }
-
 }
 
 class StartView extends Ui.View {
