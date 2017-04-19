@@ -28,19 +28,19 @@ class StartView extends Ui.View {
 	}
 
   function switchToRoundsSelect(){
-    var roundsPicker = new SettingPickerView("ROUNDS", [1,2,3,4,5,6,7,8,9,10]);
+    var roundsPicker = new SettingPickerView("ROUNDS", [1,2,3,4,5,6,7,8,9,10,12,15,16,20,25]);
     var roundsPickerDelegate = new SettingPickerDelegate(:rounds, self.method(:switchToGoTimeSelect));
     Ui.pushView(roundsPicker, roundsPickerDelegate, Ui.SLIDE_IMMEDIATE );
   }
 
   function switchToGoTimeSelect(){
-    var goTimePicker = new SettingPickerView("GO TIME", [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 90, 120]);
+    var goTimePicker = new SettingPickerView("GO TIME", [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 90, 120, 240, 300]);
     var goTimePickerDelegate = new SettingPickerDelegate(:goTime, self.method(:switchToRestTimeSelect));
     Ui.pushView(goTimePicker, goTimePickerDelegate, Ui.SLIDE_IMMEDIATE );
   }
 
   function switchToRestTimeSelect(){
-    var restTimePicker = new SettingPickerView("REST TIME", [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 90, 120]);
+    var restTimePicker = new SettingPickerView("REST TIME", [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 90, 120, 240, 300]);
     var restTimePickerDelegate = new SettingPickerDelegate(:restTime, self.method(:switchToTimer));
     Ui.pushView(restTimePicker, restTimePickerDelegate, Ui.SLIDE_IMMEDIATE );
   }
